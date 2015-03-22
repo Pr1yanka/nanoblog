@@ -19,15 +19,15 @@
 		</div>
 	
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="/home">Home</a></li>
-			</ul>
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
 				</div>
 				<button type="submit" class="btn btn-default">Search!</button>
 			</form>
+			<ul class="nav navbar-nav">
+				<!-- <li class="active"><a href="/">Home</a></li> -->
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			{%if user.is_authenticated%}
 				<li><a href="#">Profile</a></li>
@@ -45,6 +45,15 @@
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav>
+	<div class="container">
+  {%if messages %}{% for message in messages %}
+        <div class="container-fluid">
+            <div class="alert alert-{{message.tags}} fade in" style="text-align:center;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message|safe }}
+            </div>
+        </div>{% endfor %}{% endif %}
+  </div>
 		<div class="container">
 		<div class="row">
 			<!-- bio -->
@@ -55,7 +64,7 @@
 
 				<div>
 					<p class="lead">
-						Web Developer, Programmer, Human
+						{{user.user.username}}Web Developer, Programmer, Human
 						<br>
 					</p>
 					<!-- small-stats -->
